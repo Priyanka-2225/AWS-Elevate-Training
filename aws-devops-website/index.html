@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Student Task Manager</h1>
+        <p>Manage your daily college tasks easily.</p>
+
+        <form id="taskForm">
+            <input id="taskInput" type="text"
+                   placeholder="Enter a new task"
+                   aria-label="New task" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <p id="taskCount">0 tasks remaining</p>
+        <ul id="taskList"></ul>
+
+        <footer>
+            Deployed automatically with AWS CI/CD
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

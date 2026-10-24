@@ -1,0 +1,32 @@
+
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Preparing website validation"
+
+  pre_build:
+    commands:
+      - echo "Running automated tests"
+      - test -f index.html
+      - test -f style.css
+      - test -f script.js
+      - grep -q 'id="taskForm"' index.html
+      - grep -q 'style.css' index.html
+      - grep -q 'script.js' index.html
+      - grep -q 'addEventListener' script.js
+      - echo "All website checks passed"
+
+  build:
+    commands:
+      - echo "Preparing website for deployment"
+      - mkdir -p output
+      - cp index.html style.css script.js output/
+
+artifacts:
+  base-directory: output
+  files:
+    - index.html
+    - style.css
+    - script.js
