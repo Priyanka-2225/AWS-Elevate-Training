@@ -2,30 +2,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Task Manager</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#182923">
+  <meta name="description" content="A refined task management dashboard for planning, focus and progress.">
+  <title>Atelier | Task Management</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-    <main class="container">
-        <h1>Student Task Manager</h1>
-        <p>Manage your daily college tasks easily.</p>
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <span class="brand-mark">A.</span>
+      <span>ATELIER<small>PERSONAL WORKSPACE</small></span>
+    </a>
+    <nav>
+      <a class="nav-link active" href="#home">Overview</a>
+      <a class="nav-link" href="#tasks">My tasks</a>
+      <a class="nav-link" href="#method">Our approach</a>
+    </nav>
+    <div class="date-label" id="todayLabel">YOUR WORKSPACE</div>
+  </header>
 
-        <form id="taskForm">
-            <input id="taskInput" type="text"
-                   placeholder="Enter a new task"
-                   aria-label="New task" required>
-            <button type="submit">Add Task</button>
-        </form>
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> YOUR DAY, WELL CONSIDERED</p>
+        <h1>Make room for<br>what <em>matters.</em></h1>
+        <p class="hero-description">
+          A quieter way to organise your day. Set your priorities,
+          make steady progress, and give every task the attention it deserves.
+        </p>
+        <a class="primary-button" href="#tasks">Explore your tasks <span>↘</span></a>
+      </div>
+      <div class="hero-note">
+        <div class="ornament">✳</div>
+        <p class="note-label">A SMALL REMINDER</p>
+        <p class="note-quote">“Progress is built in the ordinary moments.”</p>
+        <div class="note-line"></div>
+        <p class="note-caption">PLAN WITH INTENTION. WORK WITH PURPOSE.</p>
+      </div>
+    </section>
 
-        <p id="taskCount">0 tasks remaining</p>
-        <ul id="taskList"></ul>
+    <section class="workspace">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE BIGGER PICTURE</p>
+          <h2>Your progress</h2>
+        </div>
+        <span class="period-label">LIVE SUMMARY</span>
+      </div>
 
-        <footer>
-            Deployed automatically with AWS CI/CD
-        </footer>
-    </main>
-    <script src="script.js"></script>
+      <div class="stats-grid">
+        <article class="stat-card">
+          <p class="stat-label">ALL TASKS</p>
+          <div class="stat-value" id="totalCount">0</div>
+          <p class="stat-foot">Everything on your list</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">IN PROGRESS</p>
+          <div class="stat-value" id="pendingCount">0</div>
+          <p class="stat-foot">Still to be accomplished</p>
+        </article>
+        <article class="stat-card featured-stat">
+          <p class="stat-label">COMPLETED</p>
+          <div class="stat-value" id="completedCount">0</div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <p class="stat-foot" id="progressText">Your progress starts here</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tasks-section" id="tasks">
+      <div class="section-heading tasks-heading">
+        <div>
+          <p class="eyebrow">THOUGHTFULLY ORGANISED</p>
+          <h2>The task ledger</h2>
+          <p class="section-subtitle">A clear list. A considered next step.</p>
+        </div>
+        <span class="ledger-symbol">01 / DAILY EDITION</span>
+      </div>
+
+      <form class="task-form" id="taskForm">
+        <div class="field task-name-field">
+          <label for="taskInput">WHAT NEEDS YOUR ATTENTION?</label>
+          <input id="taskInput" type="text" maxlength="120"
+            placeholder="e.g. Complete the project report" required>
+        </div>
+        <div class="field priority-field">
+          <label for="priorityInput">PRIORITY</label>
+          <select id="priorityInput">
+            <option value="Normal">Normal</option>
+            <option value="High">High</option>
+            <option value="Low">Low</option>
+          </select>
+        </div>
+        <button class="add-button" type="submit">+ Add task</button>
+      </form>
+
+      <div class="task-toolbar">
+        <div class="filter-list" role="group" aria-label="Filter tasks">
+          <button type="button" class="filter-btn selected" data-filter="all">All tasks</button>
+          <button type="button" class="filter-btn" data-filter="pending">To do</button>
+          <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+        <label class="search-box">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Find a task..." aria-label="Search tasks">
+        </label>
+      </div>
+
+      <div id="taskList" class="task-list" aria-live="polite"></div>
+
+      <div class="ledger-footer">
+        <span id="taskSummary">A fresh page awaits.</span>
+        <button type="button" id="clearCompleted" class="text-button">Clear completed</button>
+      </div>
+    </section>
+
+    <section class="approach" id="method">
+      <div class="approach-number">A.</div>
+      <div>
+        <p class="eyebrow">THE ATELIER PRINCIPLE</p>
+        <h2>Less clutter.<br><em>More considered work.</em></h2>
+      </div>
+      <p class="approach-copy">
+        Good work does not need a complicated system.
+        Decide what matters, give it your attention, and
+        recognise the progress you make along the way.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="footer-brand" href="#home">ATELIER.</a>
+    <p>Designed for thoughtful work.</p>
+    <p>Built with HTML · CSS · JavaScript</p>
+  </footer>
+
+  <noscript>This task manager requires JavaScript to work.</noscript>
 </body>
 </html>
