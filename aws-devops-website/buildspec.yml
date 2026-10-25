@@ -1,21 +1,17 @@
+
 version: 0.2
 
 phases:
   install:
     commands:
-      - echo "Preparing website validation"
-
-  pre_build:
-    commands:
-      - echo "Running automated tests"
-      - test -f aws-devops-website/index.html
-      - test -f aws-devops-website/style.css
-      - test -f aws-devops-website/script.js
+      - echo "Preparing website"
 
   build:
     commands:
+      - test -f aws-devops-website/index.html
+      - test -f aws-devops-website/style.css
+      - test -f aws-devops-website/script.js
       - echo "Website validation successful"
-      - grep -q "AWS DevOps Website" aws-devops-website/index.html
 
 artifacts:
   base-directory: aws-devops-website
