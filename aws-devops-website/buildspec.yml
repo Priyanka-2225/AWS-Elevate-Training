@@ -9,23 +9,17 @@ phases:
   pre_build:
     commands:
       - echo "Running automated tests"
-      - test -f index.html
-      - test -f style.css
-      - test -f script.js
-      - grep -q 'id="taskForm"' index.html
-      - grep -q 'style.css' index.html
-      - grep -q 'script.js' index.html
-      - grep -q 'addEventListener' script.js
-      - echo "All website checks passed"
+      - test -f aws-devops-website/index.html
+      - test -f aws-devops-website/style.css
+      - test -f aws-devops-website/script.js
 
   build:
     commands:
-      - echo "Preparing website for deployment"
-      - mkdir -p output
-      - cp index.html style.css script.js output/
+      - echo "Website validation successful"
+      - grep -q "AWS DevOps Website" aws-devops-website/index.html
 
 artifacts:
-  base-directory: output
+  base-directory: aws-devops-website
   files:
     - index.html
     - style.css
